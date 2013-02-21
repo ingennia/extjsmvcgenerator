@@ -13,16 +13,29 @@ class ExtjsModelGenerator < Rails::Generators::Base
     directory 'view', "public/#{app_name}/view/#{model_name}"
     template "model.js", "public/#{app_name}/model/#{model_name}.js"
     template "store.js", "public/#{app_name}/store/#{store_name}.js"
-    template "controller.js", "public/#{app_name}/controller/#{controller_name}.js" 
-  
+    template "controller.js", "public/#{app_name}/controller/#{controller_name}.js"   
     template "List.js", "public/#{app_name}/view/#{model_name}/List.js"
-
+    template "Edit.js", "public/#{app_name}/view/#{model_name}/Edit.js"
+    template "New.js", "public/#{app_name}/view/#{model_name}/New.js"
+    template "Form.js", "public/#{app_name}/view/#{model_name}/Form.js"
   end
 
   private
 
   def attribute_type attribute
     model_name.constantize.columns_hash[attribute].type.to_s
+  end
+
+  def extjs_form_field attribute
+	  type = attribute_type attribute
+
+	  if type == "string"
+		  return 'textfield'
+	  elsif type == "integer"
+		  return 'numberfield'
+	  elsif type == "datetime"
+		  return 'datefield'
+	  end
   end
 
   def default_model_controller model_name

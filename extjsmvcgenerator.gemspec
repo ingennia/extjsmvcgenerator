@@ -1,7 +1,7 @@
 Gem::Specification.new do |s| 
    s.name = 'extjsmvcgenerator' 
    s.version = '1.0.0' 
-   s.date = '2013-02-20' 
+   s.date = '2013-02-21' 
    s.summary = "ExtJS 4 MVC generator gem" 
    s.description = "Extjs 4 MVC generator gem" 
    s.authors = ["Ingennia"] 
