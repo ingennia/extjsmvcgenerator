@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
    s.description = "Extjs 4 MVC generator gem" 
    s.authors = ["Ingennia"] 
    s.email = 'ingennia@ingennia.cl' 
-   s.files = Dir["{extjs, extjs_model}/**/*"]
+   s.files = Dir["{lib}/**/*"]
    s.require_path = 'lib'
    s.homepage = 'http://www.ingennia.cl' 
 end
