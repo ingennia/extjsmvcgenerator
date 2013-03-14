@@ -39,7 +39,7 @@ class ExtjsModelGenerator < Rails::Generators::Base
      match_brackets = /\[|\]/
      match_brackets_with_content = /\[(.*?)\]/
 
-     gsub_file "public/#{app_name}/app.js", regexp do |match|
+     gsub_file "app/assets/javascripts/#{app_name}/app.js", regexp do |match|
 	  match.gsub match_brackets_with_content do |mmatch|
 	      mmatch.gsub!(match_brackets, "") 
 	      (mmatch.split("," > 1)) ? "[#{mmatch}, #{model_name}]": "[#{model_name}]"
