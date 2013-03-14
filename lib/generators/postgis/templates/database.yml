@@ -1,0 +1,24 @@
+common: &common
+  adapter: postgis
+  encoding: <%= encoding %>
+  pool: 5
+  username: <%= username %>
+  password: <%= password %>
+  schema_search_path: "public,postgis"
+  script_dir: /Library/PostgreSQL/9.0/share/postgresql/contrib/postgis-1.5
+  port: <%= port %>
+  postgis_extension: true
+  template: template_postgis
+
+development:
+  <<: *common
+  database: <%= app_name %>_development
+  
+test:
+  <<: *common
+  database: <%= app_name %>_test
+
+production:
+  <<: *common
+  database: <%= app_name %>_production
+
