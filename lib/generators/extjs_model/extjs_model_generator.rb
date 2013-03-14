@@ -28,7 +28,7 @@ class ExtjsModelGenerator < Rails::Generators::Base
     add_to_section match_controller_section, model_name.pluralize
 
     # Agregar al viewport la cosa
-    listModel = "var list#{model_name} = Ext.widget('list#{model_name}');"
+    listModel = "\n		var list#{model_name} = Ext.widget('list#{model_name}');"
     inject_into_file "app/assets/javascripts/#{app_name}/view/Viewport.js", listModel, :after => "initComponent: function(){"
   end
 
