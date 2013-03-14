@@ -6,6 +6,16 @@ class ExtjsGenerator < Rails::Generators::Base
     directory "app", "app/assets/javascripts/#{app_name}"
     template "app.js", "app/assets/javascripts/#{app_name}/app.js"
     template "Viewport.js", "app/assets/javascripts/#{app_name}/view/Viewport.js"
+
+    extjs = <<-JAVASCRIPT
+    //= require_tree ./#{app_name}/model
+    //= require_tree ./#{app_name}/store
+    //= require_tree ./#{app_name}/view
+    //= require_tree ./#{app_name}/controller
+    //= require #{app_name}/app
+    JAVASCRIPT
+
+    append_file 'app/assets/javascripts/application.js', extjs
   end
 
   private
