@@ -7,7 +7,8 @@ class PostgisGenerator < Rails::Generators::Base
   argument :password, :type => :string, :default => 'admin'
 
   def generate_app
-    template "database.yml", "config/database.yml"
+    template "database.yml", "config/database.yml", :force => true
+    inject_into_file 'config/application.rb', "\nrequire 'active_record/connection_adapters/postgis_adapter/railtie'", :after => "require 'rails/all'"
   end
 
 end
