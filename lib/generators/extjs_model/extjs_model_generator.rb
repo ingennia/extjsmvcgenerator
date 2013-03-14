@@ -10,17 +10,42 @@ class ExtjsModelGenerator < Rails::Generators::Base
   end
 
   def generate_model
-    directory 'view', "public/#{app_name}/view/#{model_name}"
-    template "model.js", "public/#{app_name}/model/#{model_name}.js"
-    template "store.js", "public/#{app_name}/store/#{store_name}.js"
-    template "controller.js", "public/#{app_name}/controller/#{controller_name}.js"   
-    template "List.js", "public/#{app_name}/view/#{model_name}/List.js"
-    template "Edit.js", "public/#{app_name}/view/#{model_name}/Edit.js"
-    template "New.js", "public/#{app_name}/view/#{model_name}/New.js"
-    template "Form.js", "public/#{app_name}/view/#{model_name}/Form.js"
+    directory 'view', "app/assets/javascripts/#{app_name}/view/#{model_name}"
+    template "model.js", "app/assets/javascripts/#{app_name}/model/#{model_name}.js"
+    template "store.js", "app/assets/javascripts/#{app_name}/store/#{store_name}.js"
+    template "controller.js", "app/assets/javascripts/#{app_name}/controller/#{controller_name}.js"   
+    template "List.js", "app/assets/javascripts/#{app_name}/view/#{model_name}/List.js"
+    template "Edit.js", "app/assets/javascripts/#{app_name}/view/#{model_name}/Edit.js"
+    template "New.js", "app/assets/javascripts/#{app_name}/view/#{model_name}/New.js"
+    template "Form.js", "app/assets/javascripts/#{app_name}/view/#{model_name}/Form.js"
   end
 
+  match_model_section = /models: \[(.*?)\]/
+  match_store_section = /stores: \[(.*?)\]/
+  match_controllers_section = /controllers: \[(.*?)\]/
+
+  add_to_section match_model_section, model_name
+  add_to_section match_store_section, model_name.pluralize
+  add_to_section match_controller_section, model_name.pluralize
+
+  # Agregar al viewport la cosa
+
+  listModel = "var list#{model_name} = Ext.widget('list#{model_name}');"
+  inject_into_file "app/assets/javascripts/#{app_name}/view/Viewport.js", listModel, :after => "initComponent: function(){"
+
   private
+
+  def add_to_section regexp, model_name
+     match_brackets = /\[|\]/
+     match_brackets_with_content = /\[(.*?)\]/
+
+     gsub_file "public/#{app_name}/app.js", regexp do |match|
+	  match.gsub match_brackets_with_content do |mmatch|
+	      mmatch.gsub!(match_brackets, "") 
+	      (mmatch.split("," > 1) ? "[#{mmatch}, #{model_name}]": "[#{model_name}]"
+	  end
+    end
+  end
 
   def attribute_type attribute
     model_name.constantize.columns_hash[attribute].type.to_s
