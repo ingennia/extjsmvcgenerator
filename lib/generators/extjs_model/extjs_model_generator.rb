@@ -18,20 +18,20 @@ class ExtjsModelGenerator < Rails::Generators::Base
     template "Edit.js", "app/assets/javascripts/#{app_name}/view/#{model_name}/Edit.js"
     template "New.js", "app/assets/javascripts/#{app_name}/view/#{model_name}/New.js"
     template "Form.js", "app/assets/javascripts/#{app_name}/view/#{model_name}/Form.js"
+
+    match_model_section = /models: \[(.*?)\]/
+    match_store_section = /stores: \[(.*?)\]/
+    match_controllers_section = /controllers: \[(.*?)\]/
+
+    add_to_section match_model_section, model_name
+    add_to_section match_store_section, model_name.pluralize
+    add_to_section match_controller_section, model_name.pluralize
+
+    # Agregar al viewport la cosa
+    listModel = "var list#{model_name} = Ext.widget('list#{model_name}');"
+    inject_into_file "app/assets/javascripts/#{app_name}/view/Viewport.js", listModel, :after => "initComponent: function(){"
   end
 
-  match_model_section = /models: \[(.*?)\]/
-  match_store_section = /stores: \[(.*?)\]/
-  match_controllers_section = /controllers: \[(.*?)\]/
-
-  add_to_section match_model_section, model_name
-  add_to_section match_store_section, model_name.pluralize
-  add_to_section match_controller_section, model_name.pluralize
-
-  # Agregar al viewport la cosa
-
-  listModel = "var list#{model_name} = Ext.widget('list#{model_name}');"
-  inject_into_file "app/assets/javascripts/#{app_name}/view/Viewport.js", listModel, :after => "initComponent: function(){"
 
   private
 
