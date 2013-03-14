@@ -21,7 +21,7 @@ class ExtjsModelGenerator < Rails::Generators::Base
 
     match_model_section = /models: \[(.*?)\]/
     match_store_section = /stores: \[(.*?)\]/
-    match_controllers_section = /controllers: \[(.*?)\]/
+    match_controller_section = /controllers: \[(.*?)\]/
 
     add_to_section match_model_section, model_name
     add_to_section match_store_section, model_name.pluralize
