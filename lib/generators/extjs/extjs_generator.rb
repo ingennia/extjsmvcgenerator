@@ -16,6 +16,7 @@ class ExtjsGenerator < Rails::Generators::Base
     JAVASCRIPT
 
     append_file 'app/assets/javascripts/application.js', extjs
+    inject_into_file 'app/asspets/stylesheets/application.css', '*=require extjs-rails', :before => '*/'
   end
 
   private
