@@ -42,7 +42,7 @@ class ExtjsModelGenerator < Rails::Generators::Base
      gsub_file "public/#{app_name}/app.js", regexp do |match|
 	  match.gsub match_brackets_with_content do |mmatch|
 	      mmatch.gsub!(match_brackets, "") 
-	      (mmatch.split("," > 1) ? "[#{mmatch}, #{model_name}]": "[#{model_name}]"
+	      (mmatch.split("," > 1)) ? "[#{mmatch}, #{model_name}]": "[#{model_name}]"
 	  end
     end
   end
