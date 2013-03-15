@@ -8,17 +8,17 @@ common: &common
   script_dir: /Library/PostgreSQL/9.0/share/postgresql/contrib/postgis-1.5
   port: <%= port %>
   postgis_extension: true
-  template: template_postgis
+  template: <%= template_postgis %>
 
 development:
   <<: *common
-  database: <%= app_name %>_development
+  database: <%= Rails.application.class.parent_name.underscore %>_development
   
 test:
   <<: *common
-  database: <%= app_name %>_test
+  database: <%= Rails.application.class.parent_name.underscore %>_test
 
 production:
   <<: *common
-  database: <%= app_name %>_production
+  database: <%= Rails.application.class.parent_name.underscore %>_production
 
