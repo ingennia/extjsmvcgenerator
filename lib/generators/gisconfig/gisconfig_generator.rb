@@ -9,6 +9,9 @@ class GisConfigGenerator < Rails::Generators::Base
   argument :postgis_path, :type => :string, :default => "#{ENV['POSTGRES']}/share/postgresql/contrib/postgis-1.5"
 
   def generate_postgis
+    gem 'openlayers-rails'
+    append_file "app/assets/javascripts/application.js", "//= require openlayers-rails"
+
     gem 'activerecord-postgis-adapter'
     gem 'rgeo'
     gem 'rgeo-activerecord'
