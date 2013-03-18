@@ -6,7 +6,7 @@ class GeoFactoryForGenerator < Rails::Generators::NamedBase
 
   def generate_postgis
 	 factory = "set_rgeo_factory_for_column(:%s, RGeo::Geographic.spherical_factory(:srid => %s))" % [column, srid]
-	 inject_into_class "app/models/#{model.underscore}", factory
+	 inject_into_class "app/models/#{model.underscore}.rb", factory
   end
 
   def generate_openlayers
