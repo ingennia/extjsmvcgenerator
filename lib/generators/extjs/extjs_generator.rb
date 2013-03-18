@@ -1,6 +1,6 @@
 class ExtjsGenerator < Rails::Generators::Base
   source_root File.expand_path('../templates', __FILE__)
-  argument :app_name, :type => :string, :default => 'app'
+  argument :app_name, :type => :string, :default => Rails.application.class.parent_name.underscore
 
   def generate_app
     gem 'extjs-rails'

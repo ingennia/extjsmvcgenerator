@@ -5,20 +5,20 @@ common: &common
   username: <%= username %>
   password: <%= password %>
   schema_search_path: "public,postgis"
-  script_dir: /Library/PostgreSQL/9.0/share/postgresql/contrib/postgis-1.5
+  script_dir: <%= postgis_path %>
   port: <%= port %>
   postgis_extension: true
   template: <%= template_postgis %>
 
 development:
   <<: *common
-  database: <%= Rails.application.class.parent_name.underscore %>_development
+  database: <%= app_name %>_development
   
 test:
   <<: *common
-  database: <%= Rails.application.class.parent_name.underscore %>_test
+  database: <%= app_name %>_test
 
 production:
   <<: *common
-  database: <%= Rails.application.class.parent_name.underscore %>_production
+  database: <%= app_name %>_production
 
