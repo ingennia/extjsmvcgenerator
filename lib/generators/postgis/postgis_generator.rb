@@ -9,6 +9,9 @@ class PostgisGenerator < Rails::Generators::Base
   argument :pg_path, :type => :string, :default => "#{ENV['POSTGRES']}/share/postgresql/contrib/postgis-1.5"
 
   def generate_postgis
+    gem 'activerecord-postgis-adapter'
+    gem 'rgeo'
+    gem 'rgeo-activerecord'
     template "database.yml", "config/database.yml", :force => true
     inject_into_file 'config/application.rb', "\nrequire 'active_record/connection_adapters/postgis_adapter/railtie'", :after => "require 'rails/all'"
   end
