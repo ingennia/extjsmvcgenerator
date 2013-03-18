@@ -1,4 +1,4 @@
-class GeoFactoryGenerator < Rails::Generators::NamedBase
+class GeoFactoryForGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('../templates', __FILE__)
   argument :model, :type => :string, :required => true
   argument :column, :type => :string, :required => true
