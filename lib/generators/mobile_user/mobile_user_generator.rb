@@ -8,6 +8,7 @@ class MobileUserGenerator < Rails::Generators::Base
     gem 'passbook', :git => 'git://github.com/frozon/passbook.git'
 
     run 'bundle update'
+    run 'bundle update'
     generate 'gcm_migrations'
     generate 'apn_on_rails:install'
 
