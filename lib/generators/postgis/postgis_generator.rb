@@ -1,4 +1,4 @@
-lass PostgisGenerator < Rails::Generators::Base
+class PostgisGenerator < Rails::Generators::Base
   source_root File.expand_path('../templates', __FILE__)
   argument :app_name, :type => :string, :default => 'app'
   argument :port, :type => :string, :default => ENV['PGPORT'] || "5432"
