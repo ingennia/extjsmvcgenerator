@@ -8,6 +8,7 @@
   def generate_olmap
     template "model.js", "app/assets/javascripts/#{app_name}/model/#{model_name}.js"
     template "controller.js", "app/assets/javascripts/#{app_name}/controller/#{controller_name}.js" 
+    directory "app/assets/javascripts/#{app_name}/view/#{model_name}""
     template "view.js", "app/assets/javascripts/#{app_name}/controller/Map.js"
 
     match_model_section = /models: \[(.*?)\]/
