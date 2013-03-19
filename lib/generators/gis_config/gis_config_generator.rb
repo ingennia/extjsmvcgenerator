@@ -6,7 +6,7 @@ class GisConfigGenerator < Rails::Generators::Base
   argument :username, :type => :string, :default => ENV['PGUSER'] || 'postgres'
   argument :password, :type => :string, :default => ENV['PGPASSWORD'] || 'admin'
   argument :template_postgis, :type => :string, :default => ENV['POSTGISTEMPLATE'] || 'template_postgis'
-  argument :postgis_path, :type => :string, :default => "#{ENV['POSTGRES']}/share/postgresql/contrib/postgis-1.5"
+  argument :postgis_path, :type => :string, :default => "#{ENV['POSTGRES']}/share/postgresql/contrib/postgis-1.5" || '/Library/PostgreSQL/9.1/share/postgresql/contrib/postgis-1.5'
 
   def generate_postgis
     gem 'openlayers-rails'
