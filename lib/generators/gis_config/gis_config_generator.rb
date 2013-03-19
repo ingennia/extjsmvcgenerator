@@ -10,7 +10,7 @@ class GisConfigGenerator < Rails::Generators::Base
 
   def generate_postgis
     gem 'openlayers-rails'
-    append_file "app/assets/javascripts/application.js", "//= require openlayers-rails"
+    append_file "app/assets/javascripts/application.js", "//= require openlayers-rails\n"
 
     gem 'activerecord-postgis-adapter'
     gem 'rgeo'
@@ -21,8 +21,4 @@ class GisConfigGenerator < Rails::Generators::Base
     inject_into_file 'config/application.rb', "\nrequire 'active_record/connection_adapters/postgis_adapter/railtie'", :after => "require 'rails/all'"
   end
 
-  def generate_openlayers
-    gem 'openlayers-rails'
-    append_file "app/assets/javascripts/application.js", "//= require openlayers-rails"
-  end
 end

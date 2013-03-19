@@ -7,8 +7,8 @@ class ExtjsGenerator < Rails::Generators::Base
     gem 'compass-rails'
     run 'bundle install'
 
-    append_file "app/assets/javascripts/application.js", "//= require extjs-rails"
-    inject_into_file "app/assets/stylesheets/application.css", "*= require extjs-rails", :before => "*/"
+    append_file "app/assets/javascripts/application.js", "//= require extjs-rails\n"
+    inject_into_file "app/assets/stylesheets/application.css", "*= require extjs-rails\n", :before => "*/"
 
     directory "app", "app/assets/javascripts/#{app_name}"
     template "app.js", "app/assets/javascripts/#{app_name}/app.js"
