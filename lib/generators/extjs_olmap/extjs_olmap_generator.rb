@@ -5,10 +5,6 @@
   argument :model_name, :type => :string
   @model_attributes = []
 
-  def initalizer *args, &block
-    @model_attributes = model_name.constantize.column_names
-  end
-
   def generate_olmap
     template "model.js", "app/assets/javascripts/#{app_name}/model/#{model_name}.js"
     template "controller.js", "app/assets/javascripts/#{app_name}/controller/#{controller_name}.js" 
