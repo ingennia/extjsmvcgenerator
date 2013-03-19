@@ -15,6 +15,7 @@ class GisConfigGenerator < Rails::Generators::Base
     gem 'activerecord-postgis-adapter'
     gem 'rgeo'
     gem 'rgeo-activerecord'
+    run 'bundle install'
 
     template "database.yml", "config/database.yml", :force => true
     inject_into_file 'config/application.rb', "\nrequire 'active_record/connection_adapters/postgis_adapter/railtie'", :after => "require 'rails/all'"

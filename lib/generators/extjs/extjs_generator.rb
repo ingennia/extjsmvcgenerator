@@ -5,6 +5,7 @@ class ExtjsGenerator < Rails::Generators::Base
   def generate_app
     gem 'extjs-rails'
     gem 'compass-rails'
+    run 'bundle install'
 
     append_file "app/assets/javascripts/application.js", "//= require extjs-rails"
     inject_into_file "app/assets/stylesheets/application.css", "*= require extjs-rails", :before => "*/"

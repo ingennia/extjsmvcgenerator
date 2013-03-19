@@ -10,9 +10,4 @@ class GeoFactoryForGenerator < Rails::Generators::NamedBase
 			"#{factory}"
 		end
 	end
-
-	def generate_openlayers
-		gem 'openlayers-rails'
-		append_file "app/assets/javascripts/application.js", "//= require openlayers-rails"
-	end
 end
