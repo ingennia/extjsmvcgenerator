@@ -18,7 +18,7 @@
     add_to_section match_controller_section, model_name.pluralize
 
     # Agregar al viewport la cosa
-    listModel = "\n		var map#{model_name} = Ext.widget('map#{model_name}');"
+    listModel = "\n		var panel#{model_name} = Ext.widget('panel#{model_name}');"
     inject_into_file "app/assets/javascripts/#{app_name}/view/Viewport.js", listModel, :after => "initComponent: function(){"
   end
 
